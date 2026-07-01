@@ -1,0 +1,46 @@
+name: Build iOS (unsigned)
+
+# iOS apps can only be BUILT on macOS. This workflow proves the iOS build
+# compiles green on a macOS runner (unsigned, simulator SDK). To get an
+# installable .ipa / App Store build you need a paid Apple Developer account
+# ($99/yr) plus signing certificate + provisioning profile — then this can be
+# extended with a signed archive + export step.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install npm dependencies
+        run: npm install
+
+      - name: Add iOS platform
+        run: npx cap add ios
+
+      - name: Generate app icon & splash
+        run: npx capacitor-assets generate --ios --iconBackgroundColor '#05060a' --splashBackgroundColor '#05060a' || echo "asset generation skipped (using defaults)"
+
+      - name: Sync web assets
+        run: npx cap sync ios
+
+      - name: Build (simulator, no signing)
+        run: |
+          cd ios/App
+          xcodebuild \
+            -workspace App.xcworkspace \
+            -scheme App \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            build
