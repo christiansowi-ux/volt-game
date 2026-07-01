@@ -1,7 +1,7 @@
 {
-  "name": "VOLT — One Tap. Pure Reflex.",
+  "name": "VOLT — Hold. Fly. Graze.",
   "short_name": "VOLT",
-  "description": "Das süchtig machende Neon-Reflex-Arcade-Game. Ein Tap. Wie weit kommst du?",
+  "description": "Das süchtig machende Neon-Arcade-Game im Jetpack-Stil. Halten, fliegen, Kanten streifen. Wie weit kommst du?",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

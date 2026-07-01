@@ -1,5 +1,5 @@
 /* VOLT service worker — offline cache */
-const CACHE = "volt-v1";
+const CACHE = "volt-v2";
 const ASSETS = [
   "./",
   "./index.html",
