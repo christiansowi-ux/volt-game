@@ -1,0 +1,17 @@
+{
+  "appId": "de.medientrupp.volt",
+  "appName": "VOLT",
+  "webDir": "www",
+  "backgroundColor": "#05060aff",
+  "android": {
+    "backgroundColor": "#05060aff",
+    "allowMixedContent": false
+  },
+  "plugins": {
+    "StatusBar": {
+      "overlaysWebView": true,
+      "style": "DARK",
+      "backgroundColor": "#05060aff"
+    }
+  }
+}
